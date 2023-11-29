@@ -1,11 +1,11 @@
 public class Board{
  private int [][] board;
-  
+ int curPlayer;
   
   //constructor
   public Board(){
     board = new int[BOARDSIDELENGTH][BOARDSIDELENGTH];
-    
+    curPlayer = 0;
     //set all positions to OPEN
     for(int y = 0; y < BOARDSIDELENGTH; y++)
       for(int x = 0; x < BOARDSIDELENGTH; x++){
@@ -13,7 +13,9 @@ public class Board{
       }
       
   }
-  
+  public void setTile(int tile){
+    board[tile%3][tile/3] = 
+  }
   //draw the board populated
   public void drawPopulatedBoard(){
     background(128, 128, 128);
