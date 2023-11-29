@@ -11,11 +11,18 @@ public class Board{
       for(int x = 0; x < BOARDSIDELENGTH; x++){
         board[x][y] = OPENSPACE;
       }
-      
+      drawPopulatedBoard();
   }
   public void setTile(int tile){
-    board[tile%3][tile/3] = 
+    if(board[tile%3][floor(tile/3)] == OPENSPACE){
+      board[tile%3][floor(tile/3)] = (curPlayer%2)+1;
+      curPlayer++;
+    }
+    else{
+      print("Space already taken.");
+    }
   }
+  
   //draw the board populated
   public void drawPopulatedBoard(){
     background(128, 128, 128);
@@ -28,7 +35,6 @@ public class Board{
           continue;
         }
         if(board[x][y] == FILLEDX){
-          print(board[x][y], "\n");
           drawX(x, y);
         }
         else{
