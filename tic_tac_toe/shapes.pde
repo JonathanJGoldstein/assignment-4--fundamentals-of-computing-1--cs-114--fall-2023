@@ -1,17 +1,27 @@
 public class Board{
  private int [][] board;
-  
-  
+ 
   //constructor
   public Board(){
     board = new int[BOARDSIDELENGTH][BOARDSIDELENGTH];
-    
     //set all positions to OPEN
     for(int y = 0; y < BOARDSIDELENGTH; y++)
       for(int x = 0; x < BOARDSIDELENGTH; x++){
         board[x][y] = OPENSPACE;
       }
-      
+      drawPopulatedBoard();
+  }
+  
+  //try to set a tile on the game board
+  public Boolean setTile(int tile, int curPlayer){
+    if(board[tile%3][floor(tile/3)] == OPENSPACE){
+      board[tile%3][floor(tile/3)] = curPlayer;
+      return true;
+    }
+    else{
+      print("Space already taken.");
+      return false;
+    }
   }
   
   //draw the board populated
@@ -26,7 +36,6 @@ public class Board{
           continue;
         }
         if(board[x][y] == FILLEDX){
-          print(board[x][y], "\n");
           drawX(x, y);
         }
         else{

@@ -1,8 +1,12 @@
+Board myBoard;
+
 void setup() {
   size(500, 500);
-  Board myBoard = new Board();
+  myBoard = new Board();
+  //myBoard.setTile(1);
   myBoard.drawPopulatedBoard();
 }
 
 void draw() {
+  myBoard.drawPopulatedBoard();
 }
