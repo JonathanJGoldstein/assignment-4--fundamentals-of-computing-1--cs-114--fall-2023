@@ -13,13 +13,17 @@ public class Board{
       }
       drawPopulatedBoard();
   }
-  public void setTile(int tile){
+  
+  //try to set a tile on the game board
+  public Boolean setTile(int tile){
     if(board[tile%3][floor(tile/3)] == OPENSPACE){
       board[tile%3][floor(tile/3)] = (curPlayer%2)+1;
       curPlayer++;
+      return true;
     }
     else{
       print("Space already taken.");
+      return false;
     }
   }
   
