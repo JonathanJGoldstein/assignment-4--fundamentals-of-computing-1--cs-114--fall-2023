@@ -1,11 +1,9 @@
 public class Board{
  private int [][] board;
- int curPlayer;
-  
+ 
   //constructor
   public Board(){
     board = new int[BOARDSIDELENGTH][BOARDSIDELENGTH];
-    curPlayer = 0;
     //set all positions to OPEN
     for(int y = 0; y < BOARDSIDELENGTH; y++)
       for(int x = 0; x < BOARDSIDELENGTH; x++){
@@ -15,10 +13,9 @@ public class Board{
   }
   
   //try to set a tile on the game board
-  public Boolean setTile(int tile){
+  public Boolean setTile(int tile, int curPlayer){
     if(board[tile%3][floor(tile/3)] == OPENSPACE){
-      board[tile%3][floor(tile/3)] = (curPlayer%2)+1;
-      curPlayer++;
+      board[tile%3][floor(tile/3)] = curPlayer;
       return true;
     }
     else{
