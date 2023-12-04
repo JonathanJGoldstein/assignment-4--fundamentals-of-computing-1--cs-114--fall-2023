@@ -1,4 +1,6 @@
 Boolean isPlayerTurn;
+int computerDifficulty;
+
 void keyPressed(){
   if(isPlayerTurn){
     switch (key){
@@ -34,4 +36,20 @@ void keyPressed(){
     }
   }
   
+}
+
+void PlayComputer(){
+  int randomizedNum = (int) random(0, 9);
+  switch(computerDifficulty){
+    case EASY:
+      //generate random number, if not empty tile then get new random number and try again
+        if(myBoard.setTile(randomizedNum, FILLEDX) == false){
+          randomizedNum = (int) random(0, 9);
+        }
+      break;
+    case HARD:
+    
+    case IMPOSSIBLE:
+    
+  }
 }
