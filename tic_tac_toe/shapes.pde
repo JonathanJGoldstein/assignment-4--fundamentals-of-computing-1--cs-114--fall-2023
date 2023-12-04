@@ -1,6 +1,6 @@
 public class Board{
  private int [][] board;
- 
+ private int amountOfPlays;
   //constructor
   public Board(){
     board = new int[BOARDSIDELENGTH][BOARDSIDELENGTH];
@@ -9,6 +9,7 @@ public class Board{
       for(int x = 0; x < BOARDSIDELENGTH; x++){
         board[x][y] = OPENSPACE;
       }
+      amountOfPlays = 0;
       drawPopulatedBoard();
   }
   
@@ -16,10 +17,13 @@ public class Board{
   public Boolean setTile(int tile, int curPlayer){
     if(board[tile%3][floor(tile/3)] == OPENSPACE){
       board[tile%3][floor(tile/3)] = curPlayer;
+      amountOfPlays++;
+      
       return true;
     }
     else{
       print("Space already taken.");
+      
       return false;
     }
   }
@@ -68,4 +72,36 @@ public class Board{
     line(0, thirdScreen*2, SCREENSIDELENGTH, thirdScreen*2);
   }
   
+  public int checkForWin(){
+    for(int i = 0; i < 3; i++)
+      if(checkHorizontal(i) != 0)
+        return checkHorizontal(i);
+        
+    for(int i = 0; i < 3; i++)
+      if(checkVertical(i) != 0)
+        return checkVertical(i);
+    
+    return 0;  //no win
+  }
+  
+  private int checkHorizontal(int row){
+    int cursorStart = row * 3;
+    int temp = board[cursorStart];
+    for(int i = 0; i < BOARDSIDELENGTH; i++){
+      if (board[cursorStart + i] != temp)
+        return O;
+      temp = board[cursorStart + i];
+    }
+    return temp;  //which player won
+  }
+  
+  private int checkVertical(int column){
+    int cursorStart = col;
+    int temp = board[cursorStart];
+    for(int i = 0; i < BOARDSIDELENGTH; i++){
+      if (board[cursorStart + (i * 3)] != temp)
+        return 0;
+      temp = board[cursorStart + (i * 3)];
+    }
+    return temp;  //which player won
 }

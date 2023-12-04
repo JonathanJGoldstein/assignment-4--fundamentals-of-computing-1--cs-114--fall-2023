@@ -5,32 +5,51 @@ void keyPressed(){
   if(isPlayerTurn){
     switch (key){
       case '0':
-        myBoard.setTile(0, FILLEDO);
+        if(myBoard.setTile(0, FILLEDO))
+          isPlayerTurn = false;
+        
         break;
       case '1':
-        myBoard.setTile(1, FILLEDO);
+        if(myBoard.setTile(1, FILLEDO))
+          isPlayerTurn = false;
+        
         break;
       case '2':
-        myBoard.setTile(2, FILLEDO);
+        if(myBoard.setTile(2, FILLEDO))
+          isPlayerTurn = false;
+        
         break;
       case '3':
-        myBoard.setTile(3, FILLEDO);
+        if(myBoard.setTile(3, FILLEDO))
+          isPlayerTurn = false;
+        
         break;
       case '4':
-        myBoard.setTile(4, FILLEDO);
+        if(myBoard.setTile(4, FILLEDO))
+          isPlayerTurn = false;
+        
         break;
       case '5':
-        myBoard.setTile(5, FILLEDO);
+        if(myBoard.setTile(5, FILLEDO))
+          isPlayerTurn = false;
+        
         break;
       case '6':
-        myBoard.setTile(6, FILLEDO);
+        if(myBoard.setTile(6, FILLEDO))
+          isPlayerTurn = false;
+        
         break;
       case '7':
-        myBoard.setTile(7, FILLEDO);
+        if(myBoard.setTile(7, FILLEDO))
+          isPlayerTurn = false;
+        
         break;
       case '8':
-        myBoard.setTile(8, FILLEDO);
+        if(myBoard.setTile(8, FILLEDO))
+          isPlayerTurn = false;
+        
         break;
+        
       default:
         print("You did not press a number between 0-8.\n");
     }
@@ -38,18 +57,24 @@ void keyPressed(){
   
 }
 
-void PlayComputer(){
-  int randomizedNum = (int) random(0, 9);
-  switch(computerDifficulty){
-    case EASY:
-      //generate random number, if not empty tile then get new random number and try again
-        if(myBoard.setTile(randomizedNum, FILLEDX) == false){
+void playComputer(){
+  if(!isPlayerTurn){
+    int randomizedNum = (int) random(0, 9);
+    switch(computerDifficulty){
+      case EASY:
+        //generate random number, if not empty tile then get new random number and try again
+        while(myBoard.setTile(randomizedNum, FILLEDX) == false){
           randomizedNum = (int) random(0, 9);
         }
-      break;
-    case HARD:
+        
+        break;
+      case HARD:
+      
+      
+        break;
+      case IMPOSSIBLE:
     
-    case IMPOSSIBLE:
-    
+    }
+    isPlayerTurn = true;
   }
 }
